@@ -40,7 +40,9 @@ do
 cout << "You've reached 5 attempts. The correct number was " << secretNumber << ". Better luck next time, " << userName << "!\n";
 }
 
-int main() { string userName; cout << "Enter your name: "; getline(cin, userName);
+int main() {
+
+string userName; cout << "Enter your name: "; getline(cin, userName);
 
 int rangeStart, rangeEnd;
 cout << "Enter the range for the number (e.g., 1 200): ";
