@@ -1,78 +1,28 @@
-Number Guessing game
-//Taha Rahman
-CODE IN C++--
+# Number Guessing Game
 
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
+## Overview
+This C++ program is a simple number guessing game where the player has to guess a random number within a specified range. The program provides feedback on whether the guess is too high or too low and allows the player a limited number of attempts to guess the correct number.
 
-using namespace std;
+## Features
+- **Random Number Generation**: The program generates a random number within a specified range using the `rand()` function from the `<cstdlib>` library.
+- **User Interaction**: The player is prompted to input their guess, and the program provides feedback on whether the guess is too high, too low, or correct.
+- **Limited Attempts**: The player has a limited number of attempts to guess the correct number, with a hint provided after a certain number of attempts.
+- **Customizable Range**: The range for the random number can be customized by the user.
 
-int getFeedback(int guess, int secretNumber)
-{
-    if (guess == secretNumber)
-    {
-        cout << "Congratulations! You guessed the correct number " << secretNumber << ".\n";
-        return 0;
-    }
-    else if (guess < secretNumber)
-    {
-        cout << "Too low! Try a higher number.\n";
-        return -1;
-    }
-    else
-    {
-        cout << "Too high! Try a lower number.\n";
-        return 1;
-    }
-}
+## How to Use
+1. **Compile the Program**: Compile the C++ source code (`number_guessing_game.cpp`) using a C++ compiler.
+    ```
+    g++ number_guessing_game.cpp -o number_guessing_game
+    ```
+2. **Run the Program**: Execute the compiled binary to run the number guessing game.
+    ```
+    ./number_guessing_game
+    ```
+3. **Follow On-Screen Instructions**: Enter your name, specify the range for the number, and start guessing the number.
 
-void playGame(int rangeStart, int rangeEnd, const string &userName)
-{
-    srand(static_cast<unsigned int>(time(0)));
-    int secretNumber = rand() % (rangeEnd - rangeStart + 1) + rangeStart;
+## Contributors
+- [Taha Rahman](https://github.com/TahaRahman1)
 
-    cout << "Welcome, " << userName << ", to the Number Guessing Game!\n";
-    cout << "I have selected a random number between " << rangeStart << " and " << rangeEnd << ". Try to guess it.\n";
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-    int attempts = 0;
-    int guess;
-
-    do
-    {
-        cout << "Enter your guess: ";
-        cin >> guess;
-        attempts++;
-
-        int feedback = getFeedback(guess, secretNumber);
-
-        if (feedback == 0)
-        {
-            cout << "You guessed the correct number in " << attempts << " attempts.\n";
-            return;
-        }
-
-        if (attempts == 3)
-        {
-            cout << "You've reached 3 attempts. Here's a hint: the number is divisible by 2.\n";
-        }
-
-    } while (attempts < 5);
-
-    cout << "You've reached 5 attempts. The correct number was " << secretNumber << ". Better luck next time, " << userName << "!\n";
-}
-
-int main()
-{
-    string userName;
-    cout << "Enter your name: ";
-    getline(cin, userName);
-
-    int rangeStart, rangeEnd;
-    cout << "Enter the range for the number (e.g., 1 200): ";
-    cin >> rangeStart >> rangeEnd;
-
-    playGame(rangeStart, rangeEnd, userName);
-
-    return 0;
-}
